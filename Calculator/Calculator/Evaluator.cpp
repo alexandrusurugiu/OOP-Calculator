@@ -71,8 +71,39 @@ public:
 		cout << "\n" << "Rezultatul ecuatieii este: " << this->rezultat;
 	}
 
-	friend istream& operator>>(istream& console, Evaluator& e);
-	friend ostream& operator<<(istream& console, Evaluator& e);
+	friend istream& operator>>(istream& in, Evaluator& e);
+	friend ostream& operator<<(ostream& out, Evaluator& e);
+	friend Evaluator operator+(Evaluator e1, Evaluator e2);
+	friend Evaluator operator-(Evaluator e1, Evaluator e2);
 };
+
+Evaluator operator+(Evaluator e1, Evaluator e2)
+{
+	e1.rezultat = e1.rezultat + e2.rezultat;
+	return e1;
+}
+
+Evaluator operator-(Evaluator e1, Evaluator e2)
+{
+	e1.rezultat = e1.rezultat - e2.rezultat;
+}
+
+istream& operator>>(istream& in, Evaluator& e) 
+{
+	in >> e.rezultat;
+	return in;
+}
+
+ostream& operator<<(ostream& out, Evaluator& e)
+{
+	out << e.rezultat;
+	return out;
+}
+
+
+
+
+
+
 
 	

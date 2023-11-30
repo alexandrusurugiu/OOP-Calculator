@@ -18,7 +18,7 @@ public:
 		this->erori = eroare;
 	}
 
-	double Operatii(double operand1, double operand2, char semn)
+	void Operatii(double operand1, double operand2, char semn)
 	{
 		try
 		{
@@ -68,7 +68,7 @@ public:
 
 	void Rezultat()
 	{
-		cout << "\n" << "Rezultatul ecuatieii este: " << this->rezultat;
+		cout << "\n" << "Rezultatul ecuatiei este: " << this->rezultat;
 	}
 
 	friend istream& operator>>(istream& in, Evaluator& e);

@@ -56,6 +56,23 @@ public:
 		}
 	}
 
+	double getRezultat()
+	{
+		return this->rezultat;
+	}
 
+	void setRezultat(double rez)
+	{
+		this->rezultat = rez;
+	}
 
+	void Rezultat()
+	{
+		cout << "\n" << "Rezultatul ecuatieii este: " << this->rezultat;
+	}
+
+	friend istream& operator>>(istream& console, Evaluator& e);
+	friend ostream& operator<<(istream& console, Evaluator& e);
 };
+
+	

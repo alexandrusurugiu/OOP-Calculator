@@ -86,6 +86,7 @@ Evaluator operator+(Evaluator e1, Evaluator e2)
 Evaluator operator-(Evaluator e1, Evaluator e2)
 {
 	e1.rezultat = e1.rezultat - e2.rezultat;
+	return e1;
 }
 
 istream& operator>>(istream& in, Evaluator& e) 

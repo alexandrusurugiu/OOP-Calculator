@@ -13,29 +13,28 @@ class Verificare
 	
 public:
 
-	void getExpresie()
+	Verificare();
+
+	~Verificare()
 	{
-		if (this->expresie != nullptr)
-		{
-			delete[] this->expresie;
-			this->expresie == nullptr;
-			
-			char* copie = new char[strlen(this->expresie) + 1];
-			this->expresie = copie;
-		}
+		delete[] this->expresie;
 	}
 
-	char* setExpresie(char* expresie)
+	const char* getExpresie() 
 	{
-		return this->expresie = expresie;
+		return this->expresie;
 	}
 
-	void Verifica(char* expresie, int nrCifre)
+	void setExpresie(const char* expresie) 
 	{
-		for (int i = 0; i < nrCifre; i++)
+		if (expresie != nullptr)
 		{
-			this->expresie[i] = expresie[nrCifre];
+			delete[] expresie;
 		}
+
+		this->expresie = new char[strlen(expresie) + 1];
+		strcpy(this->expresie, expresie);
+		
 	}
 
 	void Spatii(const string& expresie, vector<string>& sir) 
@@ -58,4 +57,7 @@ public:
 			sir.push_back(expresie.substr(start));
 		}
 	}
+
+	friend istream& operator<<(istream& in, Verificare& v);
+	friend ostream& operator>>(ostream& out, Verificare& v);
 };

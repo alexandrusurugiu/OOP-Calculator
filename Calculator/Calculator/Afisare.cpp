@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <Verificare.cpp>
 
 using namespace std;
 
@@ -52,8 +53,60 @@ public:
 		}
 	}
 
+	int EcranPricnipal()
+	{
+		Verificare v;
+		cout << "\n" << "Introdu expresia pe care vrei sa o prelucrezi:";
+		cout << "\n" << "Daca vrei sa iesi, tasteaza exit";
 
+		while (this->merge == true)
+		{
+			cin >> expresie;
+
+			if (expresie == "exit")
+			{
+				this->merge == false;
+				return 0;
+			}
+			
+			else
+			{
+				v.setExpresie(expresie);
+				v.Prelucrare();
+			}
+		}
+	}
+
+	friend istream& operator>>(istream& in, Verificare& v);
+	friend ostream& operator<<(ostream& out, Verificare& v);
+
+	bool operator>(int copie)
+	{
+		if (instanteCreate > copie)
+			return true;
+
+		return false;
+	}
+
+	bool operator<(int copie)
+	{
+		if (instanteCreate < copie)
+			return true;
+
+		return false;
+	}
 };
 
 	int Afisare::nrInstanta = 0;
 
+	istream& operator>>(istream& in, Verificare& v)
+	{
+		in >> v.expresie;
+		return in;
+	}
+
+	ostream& operator<<(ostream& out, Verificare& v)
+	{
+		out << v.expresie;
+		return out;
+	}

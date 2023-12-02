@@ -39,7 +39,7 @@ public:
 
 	void Spatii(const string& expresie, vector<string>& sir) 
 	{
-		size_t start = 0;
+		int start = 0;
 		char operand;
 
 		for (size_t i = 0; i < expresie.size(); i++) 

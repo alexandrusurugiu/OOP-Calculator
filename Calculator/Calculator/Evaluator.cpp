@@ -18,36 +18,41 @@ public:
 		this->erori = eroare;
 	}
 
-	void Operatii(double operand1, double operand2, char semn)
+	double Operatii(double operand1, double operand2, char semn)
 	{
 		try
 		{
-			switch (semn)
+			if (semn == '+')
 			{
-				case '+':
-					rezultat = operand1 + operand2;
-					break;
-
-				case '-':
-					rezultat = operand1 - operand2;
-					break;
-
-				case '*':
-					rezultat = operand1 * operand2;
-					break;
-
-				case '/':
-					if (operand2 == 0)
-						throw exception("Eroare: incerci sa imparti un numar la 0!");
-					else
-						rezultat = operand1 / operand2;
-					break;
-
-				default:
-					cout << "\n" << "Semnul introdus este necunoscut (inca)!";
-					this->erori = true;
-					break;
+				rezultat = operand1 + operand2;
+				return rezultat;
 			}
+			
+			if (semn == '-')
+			{
+				rezultat = operand1 - operand2;
+				return rezultat;
+			}
+
+			if (semn == '*')
+			{
+				rezultat = operand1 * operand2;
+				return rezultat;
+			}
+
+			if (semn == '/')
+			{
+				if (operand2 == 0)
+					throw exception("Eroare: incerci sa imparti un numar la 0!");
+				else
+				{
+					rezultat = operand1 / operand2;
+					return rezultat;
+				}
+			}
+
+			else
+				cout << "Semnul pe care incerci sa il introduci este indisponibil inca!";
 		}
 
 		catch (exception e)

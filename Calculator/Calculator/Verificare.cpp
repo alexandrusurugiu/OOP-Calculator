@@ -42,7 +42,7 @@ public:
 		}
 
 		this->expresie = new char[strlen(expresie) + 1];
-		strcpy(this->expresie, expresie);
+		strcpy_s(this->expresie, strlen(expresie)+1, expresie);
 		
 	}
 

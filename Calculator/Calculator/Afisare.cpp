@@ -36,10 +36,10 @@ public:
 
 	int getNrInstanta() const 
 	{
-		return nrInstanta;;
+		return nrInstanta;
 	}
 
-	Afisare(int nrInstanta) : nrInstanta(nrInstanta)
+	Afisare(int nrInstanta)
 	{
 		if (instanteCreate < MAX_INSTANTE) {
 			this->instanteCreate++;
@@ -47,7 +47,7 @@ public:
 		}
 		else 
 		{
-			cout << "" << endl;
+			cout << "\n" << "Prea multe instante ce ruleaza simultan!";
 			this->merge = false;
 		}
 	}

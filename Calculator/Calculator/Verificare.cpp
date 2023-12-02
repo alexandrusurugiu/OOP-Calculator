@@ -58,6 +58,42 @@ public:
 		}
 	}
 
-	friend istream& operator<<(istream& in, Verificare& v);
-	friend ostream& operator>>(ostream& out, Verificare& v);
+	void Prelucrare()
+	{
+		if (this->expresie != nullptr)
+		{
+			string expresie = this->expresie;
+			vector<std::string> sir;
+			Spatii(expresie, sir);
+
+			if (!sir.empty())
+			{
+				Evaluator e(stod(sir[0]));
+
+				for (int i = 1; i < sir.size(); i += 2)
+				{
+					double operand2 = stod(sir[i + 1]);
+					char semn = sir[i][0];
+					e.Prelucrare(e.getResult(), operand2, semn);
+				}
+
+				e.printFinalResult();
+			}
+		}
+	}
+
+	friend istream& operator>>(istream& in, Verificare& v);
+	friend ostream& operator<<(ostream& out, Verificare& v);
 };
+
+istream& operator>>(istream& in, Verificare& v)
+{
+	in >> v.expresie;
+	return in;
+}
+
+ostream& operator<<(ostream& out, Verificare& v)
+{
+	out << v.expresie;
+	return out;
+}

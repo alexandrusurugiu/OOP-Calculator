@@ -1,8 +1,10 @@
+#pragma once
 #include <iostream>
 using namespace std;
 
 class Evaluator
 {
+private:
 	bool erori = false;
 	double rezultat = 0.00;
 

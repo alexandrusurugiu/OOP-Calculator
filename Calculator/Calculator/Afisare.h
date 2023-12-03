@@ -1,11 +1,13 @@
+#pragma once
 #include <iostream>
 #include <string>
-#include <Verificare.cpp>
+#include "Verificare.h"
 
 using namespace std;
 
 class Afisare
 {
+private:
 	bool merge = false;
 	static int nrInstanta;
 	int instanteCreate = 0;
@@ -42,7 +44,8 @@ public:
 
 	Afisare(int nrInstanta)
 	{
-		if (instanteCreate < MAX_INSTANTE) {
+		if (instanteCreate < MAX_INSTANTE) 
+		{
 			this->instanteCreate++;
 			this->merge = true;
 		}
@@ -53,17 +56,18 @@ public:
 		}
 	}
 
-	int EcranPricnipal()
+	int EcranPrincipal()
 	{
 		Verificare v;
+		string input;
 		cout << "\n" << "Introdu expresia pe care vrei sa o prelucrezi:";
 		cout << "\n" << "Daca vrei sa iesi, tasteaza exit";
 
 		while (this->merge == true)
 		{
-			cin >> expresie;
-
-			if (expresie == "exit")
+			cin >> input;
+			
+			if (input == "exit")
 			{
 				this->merge == false;
 				return 0;
@@ -71,14 +75,14 @@ public:
 			
 			else
 			{
-				v.setExpresie(expresie);
+				v.setExpresie(input.c_str());
 				v.Prelucrare();
 			}
 		}
 	}
 
-	friend istream& operator>>(istream& in, Verificare& v);
-	friend ostream& operator<<(ostream& out, Verificare& v);
+	friend istream& operator>>(istream& in, Afisare& a);
+	friend ostream& operator<<(ostream& out, Afisare& a);
 
 	bool operator>(int copie)
 	{
@@ -99,14 +103,14 @@ public:
 
 	int Afisare::nrInstanta = 0;
 
-	istream& operator>>(istream& in, Verificare& v)
+	istream& operator>>(istream& in, Afisare& a)
 	{
-		in >> v.expresie;
+		in >> a.instanteCreate;
 		return in;
 	}
 
-	ostream& operator<<(ostream& out, Verificare& v)
+	ostream& operator<<(ostream& out, Afisare& a)
 	{
-		out << v.expresie;
+		out << a.instanteCreate;
 		return out;
 	}

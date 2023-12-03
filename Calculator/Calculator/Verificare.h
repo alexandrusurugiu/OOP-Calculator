@@ -1,13 +1,14 @@
+#pragma once
 #include <iostream>
 #include <string>
-
-//#include <Evaluator.cpp>
+#include "Evaluator.h"
 
 using namespace std;
 
 
 class Verificare
 {
+private:
 	char* expresie = nullptr;
 	int nrCifre = 0;
 	
@@ -39,14 +40,17 @@ public:
 		if (expresie != nullptr)
 		{
 			delete[] expresie;
-		}
 
-		this->expresie = new char[strlen(expresie) + 1];
-		strcpy_s(this->expresie, strlen(expresie)+1, expresie);
-		
+			this->expresie = new char[strlen(expresie) + 1];
+			strcpy_s(this->expresie, strlen(expresie) + 1, expresie);
+		}
+		else
+		{
+			expresie = nullptr;
+		}
 	}
 
-	void Spatii(const string& expresie, string& sir)
+	void Spatii (const string& expresie, string& sir)
 	{
 		int start = 0;
 		char operand;
@@ -66,6 +70,7 @@ public:
 		{
 			sir = sir + expresie.substr(start) + " ";
 		}
+		cout << sir;
 	}
 
 	void Prelucrare()
@@ -82,7 +87,7 @@ public:
 				token = expresie.substr(0, pos);
 				expresie.erase(0, pos + 1);
 
-				Evaluator e(stod(token));
+				//Evaluator e(stod(token));
 
 				char semn;
 				double operand2;
@@ -96,11 +101,8 @@ public:
 					expresie.erase(0, pos + 1);
 
 					operand2 = stod(token);
-
-					e.Prelucrare(e.getResult(), operand2, semn);
 				}
-
-				e.printFinalResult();
+				//e.printFinalResult();
 			}
 		}
 	}

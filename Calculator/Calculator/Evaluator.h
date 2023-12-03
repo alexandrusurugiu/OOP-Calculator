@@ -1,117 +1,25 @@
 #pragma once
 #include <iostream>
-using namespace std;
 
 class Evaluator
 {
 private:
-	bool erori = false;
-	double rezultat = 0.00;
+    bool erori = false;
+    double rezultat = 0.00;
 
 public:
+    bool getErori();
+    void setErori(bool eroare);
 
-	bool getErori()
-	{
-		return this->erori;
-	}
+    double Operatii(double operand1, double operand2, char semn);
 
-	void setErori(bool eroare)
-	{
-		this->erori = eroare;
-	}
+    double getRezultat();
+    void setRezultat(double rez);
 
-	double Operatii(double operand1, double operand2, char semn)
-	{
-		try
-		{
-			if (semn == '+')
-			{
-				rezultat = operand1 + operand2;
-				return rezultat;
-			}
-			
-			if (semn == '-')
-			{
-				rezultat = operand1 - operand2;
-				return rezultat;
-			}
+    void Rezultat();
 
-			if (semn == '*')
-			{
-				rezultat = operand1 * operand2;
-				return rezultat;
-			}
-
-			if (semn == '/')
-			{
-				if (operand2 == 0)
-					throw exception("Eroare: incerci sa imparti un numar la 0!");
-				else
-				{
-					rezultat = operand1 / operand2;
-					return rezultat;
-				}
-			}
-
-			else
-				cout << "Semnul pe care incerci sa il introduci este indisponibil inca!";
-		}
-
-		catch (exception e)
-		{
-			cout << "\n" << e.what();
-		}
-	}
-
-	double getRezultat()
-	{
-		return this->rezultat;
-	}
-
-	void setRezultat(double rez)
-	{
-		this->rezultat = rez;
-	}
-
-	void Rezultat()
-	{
-		cout << "\n" << "Rezultatul ecuatiei este: " << this->rezultat;
-	}
-
-	friend istream& operator>>(istream& in, Evaluator& e);
-	friend ostream& operator<<(ostream& out, Evaluator& e);
-	friend Evaluator operator+(Evaluator e1, Evaluator e2);
-	friend Evaluator operator-(Evaluator e1, Evaluator e2);
+    friend std::istream& operator>>(std::istream& in, Evaluator& e);
+    friend std::ostream& operator<<(std::ostream& out, const Evaluator& e);
+    friend Evaluator operator+(Evaluator e1, Evaluator e2);
+    friend Evaluator operator-(Evaluator e1, const Evaluator e2);
 };
-
-Evaluator operator+(Evaluator e1, Evaluator e2)
-{
-	e1.rezultat = e1.rezultat + e2.rezultat;
-	return e1;
-}
-
-Evaluator operator-(Evaluator e1, Evaluator e2)
-{
-	e1.rezultat = e1.rezultat - e2.rezultat;
-	return e1;
-}
-
-istream& operator>>(istream& in, Evaluator& e) 
-{
-	in >> e.rezultat;
-	return in;
-}
-
-ostream& operator<<(ostream& out, Evaluator& e)
-{
-	out << e.rezultat;
-	return out;
-}
-
-
-
-
-
-
-
-	

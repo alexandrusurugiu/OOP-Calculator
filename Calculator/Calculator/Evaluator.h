@@ -8,6 +8,11 @@ private:
     double rezultat = 0.00;
 
 public:
+    Evaluator();
+    Evaluator(const Evaluator& copie);
+    ~Evaluator();
+
+
     bool getErori();
     void setErori(bool eroare);
 

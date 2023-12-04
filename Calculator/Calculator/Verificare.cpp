@@ -80,7 +80,8 @@ void Verificare::Prelucrare()
 
             char semn;
             double operand2;
-            while ((pos = expresie.find(' ')) != std::string::npos)
+
+            if (!expresie.empty())
             {
                 semn = expresie[0];
                 expresie.erase(0, 2);

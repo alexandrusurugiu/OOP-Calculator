@@ -60,7 +60,7 @@ void Afisare::EcranPrincipal()
 
         if (input == "exit")
         {
-            this->merge == false;
+            this->merge = false;
             break;
         }
 

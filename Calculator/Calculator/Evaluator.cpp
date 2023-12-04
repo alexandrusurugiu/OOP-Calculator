@@ -1,6 +1,21 @@
 #include "Evaluator.h"
 #include <iostream>
 
+Evaluator::Evaluator()
+{
+
+}
+
+Evaluator::Evaluator(const Evaluator& copie)
+{
+    this->erori = copie.erori;
+    this->rezultat = copie.rezultat;
+}
+
+Evaluator::~Evaluator()
+{
+
+}
 
 bool Evaluator::getErori()
 {

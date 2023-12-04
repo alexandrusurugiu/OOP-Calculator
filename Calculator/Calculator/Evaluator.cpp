@@ -1,6 +1,7 @@
 #include "Evaluator.h"
 #include <iostream>
 
+
 bool Evaluator::getErori()
 {
     return this->erori;

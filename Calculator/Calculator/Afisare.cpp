@@ -5,6 +5,7 @@ int Afisare::nrInstanta = 0;
 
 Afisare::Afisare()
 {
+    this->merge = true;
 }
 
 Afisare::~Afisare()
@@ -45,12 +46,13 @@ Afisare::Afisare(int nrInstanta)
     }
 }
 
-int Afisare::EcranPrincipal()
+void Afisare::EcranPrincipal()
 {
     Verificare v;
     std::string input;
     std::cout << "\n" << "Introdu expresia pe care vrei sa o prelucrezi:";
     std::cout << "\n" << "Daca vrei sa iesi, tasteaza exit";
+    std::cout << "\n";
 
     while (this->merge == true)
     {
@@ -59,7 +61,7 @@ int Afisare::EcranPrincipal()
         if (input == "exit")
         {
             this->merge == false;
-            return 0;
+            break;
         }
 
         else
@@ -67,6 +69,8 @@ int Afisare::EcranPrincipal()
             v.setExpresie(input.c_str());
             v.Prelucrare();
         }
+        std::cout << "\n";
+        
     }
 }
 

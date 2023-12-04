@@ -3,6 +3,7 @@
 
 Verificare::Verificare()
 {
+
 }
 
 Verificare::Verificare(const Verificare& copie)
@@ -94,6 +95,7 @@ void Verificare::Prelucrare()
         }
     }
 }
+
 
 std::istream& operator>>(std::istream& in, Verificare& v)
 {

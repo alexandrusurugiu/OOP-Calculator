@@ -1,9 +1,8 @@
-#include <iostream>
-#include <string>
-
-using namespace std;
+#include "Afisare.h"
 
 int main()
 {
-   
+	Afisare a;
+
+	a.EcranPrincipal();
 }

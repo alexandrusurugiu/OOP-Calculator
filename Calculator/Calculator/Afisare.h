@@ -23,7 +23,7 @@ public:
 
     Afisare(int nrInstanta);
 
-    int EcranPrincipal();
+    void EcranPrincipal();
 
     friend std::istream& operator>>(std::istream& in, Afisare& a);
     friend std::ostream& operator<<(std::ostream& out, Afisare& a);

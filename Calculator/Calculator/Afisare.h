@@ -29,7 +29,7 @@ public:
     friend std::ostream& operator<<(std::ostream& out, Afisare& a);
 
     bool operator>(int copie);
-    bool operator<(int copie);
+    bool operator!();
 };
 
 std::istream& operator>>(std::istream& in, Afisare& a);

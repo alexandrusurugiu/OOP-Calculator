@@ -1,5 +1,6 @@
 #include "Evaluator.h"
 #include <iostream>
+#include <iomanip>
 
 Evaluator::Evaluator()
 {
@@ -53,6 +54,7 @@ double Evaluator::Operatii(double operand1, double operand2, char semn)
         {
             if (operand2 == 0)
                 throw std::exception("Eroare: incerci sa imparti un numar la 0!");
+       
             else
             {
                 rezultat = operand1 / operand2;
@@ -82,7 +84,7 @@ void Evaluator::setRezultat(double rez)
 
 void Evaluator::Rezultat()
 {
-    std::cout << "\n" << "Rezultatul ecuatiei este: " << this->rezultat;
+    std::cout << std::fixed << std::setprecision(4) << "\n" << "Rezultatul ecuatiei este: " << this->rezultat;
 }
 
 std::istream& operator>>(std::istream& in, Evaluator& e)

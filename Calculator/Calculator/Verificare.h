@@ -10,14 +10,15 @@ private:
     int nrCifre = 0;
 
 public:
+    Verificare(std::string ceva);
     Verificare();
     Verificare(const Verificare& copie);
     ~Verificare();
 
-    const char* getExpresie();
+    char* getExpresie();
     void setExpresie(const char* expresie);
 
-    void Spatii(const std::string& expresie, std::string& sir);
+    void EliminaSpatii(const std::string& expresie, std::string& sir);
     void Prelucrare();
 
     friend std::istream& operator>>(std::istream& in, Verificare& v);
@@ -25,4 +26,6 @@ public:
 
     Verificare operator=(const Verificare& copie);
     Verificare& operator++();
+    Verificare& operator++(int);
+    char operator[](int index);
 };

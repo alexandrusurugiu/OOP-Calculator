@@ -1,5 +1,6 @@
 #include "Afisare.h"
 #include <iostream>
+#include <string>
 
 int Afisare::nrInstanta = 0;
 
@@ -50,24 +51,26 @@ void Afisare::EcranPrincipal()
 {
     Verificare v;
     std::string input;
-    std::cout << "\n" << "Introdu expresia pe care vrei sa o prelucrezi:";
+    std::string sir;
+    std::cout << "Introdu expresia pe care vrei sa o prelucrezi:";
     std::cout << "\n" << "Daca vrei sa iesi, tasteaza exit";
     std::cout << "\n";
 
     while (this->merge == true)
     {
-        std::cin >> input;
+        getline(std::cin, input);
 
-        if (input == "exit")
+        if (input == "exit" || input == "")
         {
             this->merge = false;
             break;
         }
-
         else
         {
-            v.setExpresie(input.c_str());
+            v.EliminaSpatii(input, sir);
+            v.setExpresie(sir.c_str());
             v.Prelucrare();
+            std::cout << "\n" << "Introdu alta expresie: ";
         }
         std::cout << "\n";
         
@@ -94,10 +97,7 @@ bool Afisare::operator>(int copie)
     return false;
 }
 
-bool Afisare::operator<(int copie)
+bool Afisare::operator!()
 {
-    if (instanteCreate < copie)
-        return true;
-
-    return false;
+    return this->instanteCreate != 0;
 }

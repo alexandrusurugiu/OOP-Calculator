@@ -1,6 +1,12 @@
 #include "Verificare.h"
 #include <cstring>
 
+Verificare::Verificare(std::string ceva)
+{
+    this->expresie = new char[ceva.size() + 1];
+    strcpy_s(this->expresie, ceva.size() + 1, ceva.c_str());
+}
+
 Verificare::Verificare()
 {
 
@@ -20,9 +26,16 @@ Verificare::~Verificare()
     delete[] this->expresie;
 }
 
-const char* Verificare::getExpresie()
+char* Verificare::getExpresie()
 {
-    return this->expresie;
+    if (this->expresie != nullptr)
+    {
+        char* copie = new char[strlen(expresie) + 1];
+        strcpy_s(copie, strlen(expresie) + 1, this->expresie);
+        return copie;
+    }
+    else
+        return nullptr;
 }
 
 void Verificare::setExpresie(const char* expresie)
@@ -37,64 +50,65 @@ void Verificare::setExpresie(const char* expresie)
     else
     {
         this->expresie = nullptr;
+
     }
 }
 
-void Verificare::Spatii(const std::string& expresie, std::string& sir)
+void Verificare::EliminaSpatii(const std::string& expresie, std::string& sir)
 {
-    int start = 0;
-    char operand;
-
-    for (int i = 0; i < expresie.size(); i++)
+    for (char caracter : expresie)
     {
-        if (!isdigit(expresie[i]) && expresie[i] != '.')
+        if (!isspace(caracter))
         {
-            operand = expresie[i];
-            sir = sir + expresie.substr(start, i - start) + " ";
-            sir = sir + std::string(1, operand) + " ";
-            start = i + 1;
+            sir += caracter;
         }
     }
-
-    if (start < expresie.size())
-    {
-        sir = sir + expresie.substr(start) + " ";
-    }
-    std::cout << sir;
 }
+
 
 void Verificare::Prelucrare()
 {
-    Evaluator e;
-    if (this->expresie != nullptr)
+    std::string sir = this->expresie;
+    std::string* componente = new std::string[sir.size()];
+
+    int indexComponent = 0;
+
+    std::string curent;
+
+    for (int i = 0; i < sir.size(); i++)
     {
-        std::string expresie = this->expresie;
-
-        std::string token;
-        int pos = 0;
-
-        if ((pos = expresie.find(' ')) != std::string::npos)
+        if (isdigit(sir[i]) || sir[i] == '.')
         {
-            token = expresie.substr(0, pos);
-            expresie.erase(0, pos + 1);
-
-            char semn;
-            double operand2;
-
-            if (!expresie.empty())
+            curent += sir[i];
+        }
+        else
+        {
+            if (!curent.empty())
             {
-                semn = expresie[0];
-                expresie.erase(0, 2);
-
-                pos = expresie.find(' ');
-                token = expresie.substr(0, pos);
-                expresie.erase(0, pos + 1);
-
-                operand2 = stod(token);
+                componente[indexComponent++] = curent;
+                curent.clear(); 
             }
-            e.Rezultat();
+
+            componente[indexComponent++] = std::string(1, sir[i]);
         }
     }
+
+    if (!curent.empty())
+    {
+        componente[indexComponent++] = curent;
+    }
+
+    Evaluator e;
+    e.setRezultat(std::stod(componente[0]));
+
+    for (int i = 1; i < indexComponent - 1; i++)
+    {
+        e.Operatii(e.getRezultat(), std::stod(componente[i + 1]), componente[i][0]);
+    }
+
+    delete[] componente;
+
+    e.Rezultat();
 }
 
 
@@ -114,10 +128,39 @@ Verificare Verificare::operator=(const Verificare& copie)
 {
     if (&copie == this)
         return *this;
+    
+    if (copie.expresie != nullptr)
+    {
+        delete[] this->expresie;
+
+        strcpy_s(this->expresie, strlen(copie.expresie) + 1, copie.expresie);
+    }
+    else
+    {
+        delete[] this->expresie;
+        this->expresie = nullptr;
+    }
+    return *this;
 }
 
 Verificare& Verificare::operator++()
 {
     nrCifre++;
     return *this;
+}
+
+Verificare& Verificare::operator++(int)
+{
+    Verificare copie = *this;
+    nrCifre++;
+    return copie;
+}
+
+char Verificare::operator[](int index)
+{
+    if (index >= 0 && index < strlen(this->expresie))
+    {
+        return this->expresie[index];
+    }
+    else return -1;
 }

@@ -25,12 +25,6 @@ public:
     bool getBinar();
 
     void setBinar(bool binar);
-
-    Evaluator e;
-
-    void procesare();
-
-    void salvareRezultat();
 };
 
 

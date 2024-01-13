@@ -33,17 +33,3 @@
     {
         this->binar = binar;
     }
-
-    void procesare()
-    {
-
-        Evaluator e;
-        e.Operatii;
-        std::ifstream file(numeFisier);
-        if (!file.is_open()) {
-            std::cout << "Nu s-a putut deschide fisierul." << "\n";
-            return;
-    }
-
-    void salvareRezultat();
-};

@@ -1,6 +1,7 @@
 #include "Evaluator.h"
 #include <iostream>
 #include <iomanip>
+#include <cmath>
 
 Evaluator::Evaluator()
 {
@@ -60,6 +61,18 @@ double Evaluator::Operatii(double operand1, double operand2, char semn)
                 rezultat = operand1 / operand2;
                 return rezultat;
             }
+        }
+
+        if (semn == '^')
+        {
+            rezultat = pow(operand1, operand2);
+            return rezultat;
+        }
+
+        if (semn == '#')
+        {
+            rezultat = sqrt(operand1);
+            return rezultat;
         }
 
         else
